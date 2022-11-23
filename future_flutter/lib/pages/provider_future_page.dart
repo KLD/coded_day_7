@@ -23,21 +23,15 @@ class ProviderFuturePage extends StatelessWidget {
               child: Text("Stateful")),
         ],
       ),
-      body: context.watch<ProcessProvider>().isLoading
-          ? Center(child: CircularProgressIndicator())
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Center(child: Text(context.watch<ProcessProvider>().status)),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<ProcessProvider>().startProcess();
-                  },
-                  child: Text("Loading"),
-                ),
-              ],
-            ),
+      body:
+
+          /// [Task 6] build widget similar to stateful_future_page.dart
+          /// Steps:
+          /// 1- watch 'isLoading' , when it's true, build CircularProgressIndicator
+          /// 2- when isLoading is false, build a Button and Text
+          /// 3- Build a Text widget and pass it 'status' from ProcessProvider
+          /// 4- Make Button call 'startProcess' from ProcessProvider
+          null,
     );
   }
 }

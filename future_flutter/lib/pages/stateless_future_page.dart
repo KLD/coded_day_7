@@ -21,17 +21,15 @@ class StatelessFuturePage extends StatelessWidget {
               child: Text("Provider")),
         ],
       ),
-      body: FutureBuilder<String>(
-          future: process(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            }
-
-            String data = snapshot.data!;
-
-            return Center(child: Text(data));
-          }),
+      body:
+          // [Task] replace 'null' with a FutureBuilder widget.
+          // Steps:
+          // 1- Create future builder (optional with <String> type)
+          // 2- pass 'process()' as future
+          // 3- pass 'builder' the following nameless function
+          // 3.a if snapshot.connectionState is ConnectionState.waiting, then return CircularProgressIndicator()
+          // 3.b otherwise, return centered Text with snapshot.data
+          null,
     );
   }
 }

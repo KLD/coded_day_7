@@ -8,21 +8,15 @@ class StatefulFuturePage extends StatefulWidget {
 }
 
 class _StatefulFuturePageState extends State<StatefulFuturePage> {
-  late bool isLoading;
+  bool isLoading = true;
   String processResult = "";
 
-  @override
-  void initState() {
-    super.initState();
-    isLoading = true;
-
-    process().then((value) => setState(() {
-          setState(() {
-            isLoading = false;
-            processResult = value;
-          });
-        }));
-  }
+  // [Task 2] Loading inital processResult using initState
+  // Steps:
+  // 1- override initState
+  // 2- call 'process()'
+  // 3- add 'then' to process's future
+  // 4- inside then, set 'processResult' to the result and set isLoading to false
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +45,14 @@ class _StatefulFuturePageState extends State<StatefulFuturePage> {
           else
             Center(child: Text(processResult)),
           ElevatedButton(
-            onPressed: isLoading
-                ? null
-                : () async {
-                    setState(() {
-                      isLoading = true;
-                    });
-                    var result = await process();
+            // [Task 3] Loading process when button is pressed
+            // 1- replace 'null' with an async nameless method
+            // 2- set isLoading to true
+            // 3- call 'await process()' and store the result in a variable;
+            // 4- set 'processResult' to the result and set isLoading to false
+            // 5- [optional] when 'isLoading' is true, disable button
+            onPressed: null,
 
-                    setState(() {
-                      isLoading = false;
-                      processResult = result;
-                    });
-                  },
             child: Text("Load process"),
           ),
         ],
