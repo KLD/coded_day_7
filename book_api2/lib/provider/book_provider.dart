@@ -61,6 +61,30 @@ class BookProvider extends ChangeNotifier {
     await loadBooks();
   }
 
+  Future<void> editBook({
+    required Book book,
+    required String? title,
+    required String? description,
+    required File? image,
+    required double? price,
+  }) async {
+    isLoading = true;
+    notifyListeners();
+
+    Dio client = Dio();
+
+    await client.put(
+        "https://coded-books-api-crud.herokuapp.com/books/${book.id}",
+        data: FormData.fromMap({
+          "title": title ?? book.title,
+          "description": description ?? book.description,
+          if (image != null) "image": await MultipartFile.fromFile(image.path),
+          "price": price ?? book.price,
+        }));
+
+    await loadBooks();
+  }
+
   // delete book
   Future<void> deleteBook(int id) async {
     Dio client = Dio();

@@ -1,6 +1,7 @@
 import 'package:book_api/models/book_model.dart';
 import 'package:book_api/provider/book_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class BookCard extends StatelessWidget {
@@ -15,9 +16,13 @@ class BookCard extends StatelessWidget {
         subtitle: Text(book.description,
             maxLines: 2, overflow: TextOverflow.ellipsis),
         trailing: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(book.price.toString()),
+            InkWell(
+              child: Icon(Icons.edit),
+              onTap: () => context.push("/edit_book", extra: book),
+            ),
             InkWell(
               child: Icon(Icons.delete),
               onTap: () => context.read<BookProvider>().deleteBook(book.id),
